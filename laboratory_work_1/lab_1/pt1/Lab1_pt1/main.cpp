@@ -101,6 +101,44 @@ private:
     int queueSize;
 };
 
+class PriorityQueueHeap: public PriorityQueue {
+public:
+    /// later
+    PriotiryQueueHeap() {
+        heapSize = 0;
+        queueSize = 0;
+        queueSpace = nullptr;
+    }
+    Data pullMaxKey() {
+
+    }
+private:
+    void siftUp (int index) {
+        while (heapSpace[i] < heapSpace[(i - 1) / 2]) {
+            swap(headSpace[(i - 1) / 2], heapSpace[i]);
+            i = (i - 1) / 2;
+        }
+    }
+    void siftDown (int index) {
+        while (2 * i + 1 < heapSize) {
+            int left = 2 * i + 1;
+            int right = 2 * i + 2;
+            int j = left;
+            if (right < heapSize && heapSpace[right] > heapSize[left]) {
+                j = right;
+            }
+            if (heapSpace[i] >= heapSpace[j]) {
+                break;
+            }
+            swap(heapSpace[i], heapSpace[j]);
+            i = j;
+        }
+    }
+    int* heapSpace;
+    int queueSize;
+    int heapSize;
+};
+
 int main() {
     return 0;
 }
