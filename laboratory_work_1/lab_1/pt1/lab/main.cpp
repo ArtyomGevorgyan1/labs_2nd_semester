@@ -6,6 +6,11 @@ struct Data {
     int priority;
 };
 
+struct Node {
+    Node* next;
+    Data data;
+};
+
 // works fro structs defined in this file, going to rewrite it using templates later
 class PriorityQueue {
 public:
@@ -13,12 +18,7 @@ public:
     virtual Data peekMaxKey() const = 0;
     virtual void pushElem(Data) = 0;
     virtual bool isEmpty() const = 0;
-    virtual ~PriorityQueue() = 0;
-};
-
-struct Node {
-    Node* next;
-    Data data;
+    virtual ~PriorityQueue() {};
 };
 
 class PriorityQueueList: public PriorityQueue {
@@ -27,7 +27,7 @@ public:
         head = nullptr;
         queueSize = 0;
     }
-    ~PriorityQueueList() {
+    ~PriorityQueueList()  {
         Node* cur = head;
         while (cur -> next) {
             Node* tmp = cur;
@@ -83,7 +83,7 @@ public:
         head = tmp;
         queueSize++;
     }
-    bool isEmpty() {
+    bool isEmpty() const {
         return queueSize <= 0;
     }
 private:
@@ -103,8 +103,7 @@ private:
 
 class PriorityQueueHeap: public PriorityQueue {
 public:
-    /// later
-    PriotiryQueueHeap() {
+    PriorityQueueHeap() {
         heapSize = 0;
         queueSize = 0;
         heapSpace = nullptr;
@@ -123,12 +122,12 @@ public:
         Data res = heapSpace[0];
         return res;
     }
-    void insertKey(Data d) {
+    void pushElem(Data d) {
         heapSize++;
         heapSpace[heapSize - 1] = d;
         siftUp(heapSize - 1);
     }
-    bool isEmpty() {
+    bool isEmpty() const {
         return heapSize <= 0;
     }
 
@@ -160,5 +159,8 @@ private:
 };
 
 int main() {
+    PriorityQueueList Heap;
+    Data d;
+    Heap.pushElem(d);
     return 0;
 }
