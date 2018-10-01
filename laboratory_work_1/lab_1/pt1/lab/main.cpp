@@ -1,17 +1,24 @@
 #include <bits/stdc++.h>
 using namespace std;
 
+// todo:
+// 1) group the code into h files
+// 2) use templates
+// 3) exception handling
+// 4) testing (unit tests?)
+
+
 struct Data {
     int value;
     int priority;
 };
 
+template <typename T>
 struct Node {
     Node* next;
     Data data;
 };
 
-// works fro structs defined in this file, going to rewrite it using templates later
 class PriorityQueue {
 public:
     virtual Data pullMaxKey() = 0;
@@ -37,9 +44,6 @@ public:
         delete cur;
     }
     Data pullMaxKey() {
-        if (queueSize <= 0) {
-            /*todo: exception handling*/
-        }
         Node* res = head;
         Node* cur = head;
         int index = 0;
@@ -59,9 +63,6 @@ public:
         return result;
     }
     Data peekMaxKey() const {
-        if (queueSize <= 0) {
-            // throw exception???
-        }
         Node* res = head;
         Node* cur = head;
         while (1) {
@@ -87,7 +88,6 @@ public:
         return queueSize <= 0;
     }
 private:
-    // deletion
     void deleteNdElem(int index) {
         Node* cur = head;
         for (int i = 0; i < index - 1; i++) {
