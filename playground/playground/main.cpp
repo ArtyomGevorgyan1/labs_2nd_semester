@@ -7,7 +7,7 @@ class Abstract {
 
 class Son {
     public:
-    f(int a) {
+    void f(int a) {
         cout << "a\n";
     }
 };
@@ -15,6 +15,7 @@ class Son {
 
 
 int main() {
+
     Son S;
     return 0;
 }
