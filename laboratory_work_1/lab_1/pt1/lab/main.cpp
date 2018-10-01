@@ -8,47 +8,44 @@ using namespace std;
 // 4) testing (unit tests?)
 
 
-struct Data {
-    int value;
-    int priority;
+template <typename T>
+struct Node{
+    Node<T>* next;
+    T data;
 };
 
 template <typename T>
-struct Node {
-    Node* next;
-    Data data;
-};
-
 class PriorityQueue {
 public:
-    virtual Data pullMaxKey() = 0;
-    virtual Data peekMaxKey() const = 0;
-    virtual void pushElem(Data) = 0;
+    virtual T pullMaxKey() = 0;
+    virtual T peekMaxKey() const = 0;
+    virtual void pushElem(T) = 0;
     virtual bool isEmpty() const = 0;
     virtual ~PriorityQueue() {};
 };
 
-class PriorityQueueList: public PriorityQueue {
+template <typename T>
+class PriorityQueueList: public PriorityQueue<T> {
 public:
     PriorityQueueList() {
         head = nullptr;
         queueSize = 0;
     }
     ~PriorityQueueList()  {
-        Node* cur = head;
+        Node<T>* cur = head;
         while (cur -> next) {
-            Node* tmp = cur;
+            Node<T>* tmp = cur;
             cur = cur -> next;
             delete tmp;
         }
         delete cur;
     }
-    Data pullMaxKey() {
-        Node* res = head;
-        Node* cur = head;
+    T pullMaxKey() {
+        Node<T>* res = head;
+        Node<T>* cur = head;
         int index = 0;
         while (1) {
-            if (cur -> next -> data.priority > res -> data.priority) {
+            if (cur -> next -> data > res -> data) {
                 res = cur;
             }
             if (cur -> next) {
@@ -58,15 +55,15 @@ public:
                 break;
             }
         }
-        Data result = (res -> data);
+        T result = (res -> data);
         deleteNdElem(index);
         return result;
     }
-    Data peekMaxKey() const {
-        Node* res = head;
-        Node* cur = head;
+    T peekMaxKey() const {
+        Node<T>* res = head;
+        Node<T>* cur = head;
         while (1) {
-            if (cur -> next -> data.priority > res -> data.priority) {
+            if (cur -> next -> data > res -> data) {
                 res = cur;
             }
             if (cur -> next) {
@@ -75,11 +72,11 @@ public:
                 break;
             }
         }
-        Data result = (res -> data);
+        T result = (res -> data);
         return result;
     }
-    void pushElem(Data data) {
-        Node* tmp = new Node(/*parameters to initialize it*/);
+    void pushElem(T data) {
+        Node<T>* tmp = new Node<T>(/*parameters to initialize it*/);
         tmp -> next = head;
         head = tmp;
         queueSize++;
@@ -89,19 +86,20 @@ public:
     }
 private:
     void deleteNdElem(int index) {
-        Node* cur = head;
+        Node<T>* cur = head;
         for (int i = 0; i < index - 1; i++) {
             cur = cur -> next;
         }
-        Node* tmp = cur -> next;
+        Node<T>* tmp = cur -> next;
         cur -> next = cur -> next -> next;
         delete tmp;
     }
-    Node* head;
+    Node<T>* head;
     int queueSize;
 };
 
-class PriorityQueueHeap: public PriorityQueue {
+template <typename T>
+class PriorityQueueHeap: public PriorityQueue<T> {
 public:
     PriorityQueueHeap() {
         heapSize = 0;
@@ -111,18 +109,18 @@ public:
     ~PriorityQueueHeap() {
         delete[] heapSpace;
     }
-    Data pullMaxKey() {
-        Data res = heapSpace[0];
+    T pullMaxKey() {
+        T res = heapSpace[0];
         heapSpace[0] = heapSpace[heapSize - 1];
         heapSize--;
         siftDown(0);
         return res;
     }
-    Data peekMaxKey() const {
-        Data res = heapSpace[0];
+    T peekMaxKey() const {
+        T res = heapSpace[0];
         return res;
     }
-    void pushElem(Data d) {
+    void pushElem(T d) {
         heapSize++;
         heapSpace[heapSize - 1] = d;
         siftUp(heapSize - 1);
@@ -153,14 +151,15 @@ private:
             i = j;
         }
     }
-    Data* heapSpace;
+    T* heapSpace;
     int queueSize;
     int heapSize;
 };
 
 int main() {
-    PriorityQueueList Heap;
-    Data d;
+
+    PriorityQueueList<int> Heap;
+    int d = 3;
     Heap.pushElem(d);
     return 0;
 }
