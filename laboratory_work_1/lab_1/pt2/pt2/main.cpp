@@ -5,8 +5,58 @@ class FileSystem {
     vector <File*> contains;
 public:
     //vector <File*> search(Filter Params);
-    void searchName() {}
-    // ...
+    void addPointer(File* item) {
+        vector.push_back(item);
+    }
+    void removePointer(File* item) {
+        contains.erase(contains.begin() + contains.find(item));
+    }
+    vector <File*> searchByName(string match) const {
+        vector <File*> result;
+        for(int i = 0; i < contains.size(); i++) {
+            if (contains[i] -> name == match) {
+                result.push_back(contains[i]);
+            }
+        }
+        return result;
+    };
+    vector <File*> searchByType(string match) const {
+        vector <File*> result;
+        for (int i = 0; i < contains.size(); i++) {
+            if (contains[i] -> type == match) {
+                result.push_back(contains[i]);
+            }
+        }
+        return result;
+    };
+    vector <File*> searchBySize(size_t match) const {
+        vector <File*> result;
+        for (int i = 0; i < contains.size(); i++) {
+            if (contains[i] -> sz == match) {
+                result.push_back(contains[i]);
+            }
+        }
+        return result;
+    };
+    vector <File*> searchByCreationDate(Date match) const {
+        vector <File*> result;
+        for (int i = 0; i < contains.size(); i++) {
+                //??
+            if (contains[i] -> created == match) {
+                result.push_back(contains[i]);
+            }
+        }
+        return result;
+    };
+    vector <File*> searchByModificationDate(Date match) const {
+        vector <File*> result;
+        for (int i = 0; i < contains.size(); i++) {
+            if (contains[i] -> modified == match) {
+                result.push_back(contains[i]);
+            }
+        }
+        return result;
+    };
 };
 
 // same static member acesible from any object of this class?
