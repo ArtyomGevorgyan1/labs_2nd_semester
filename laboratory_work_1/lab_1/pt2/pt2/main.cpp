@@ -4,7 +4,9 @@ using namespace std;
 class FileSystem {
     vector <File*> contains;
 public:
-    vector <File*> search(Filter Params);
+    //vector <File*> search(Filter Params);
+    void searchName() {}
+    // ...
 };
 
 // same static member acesible from any object of this class?
@@ -86,8 +88,37 @@ class File {
     Time created;
     Time modified;
     string name;
-    string
+    string type;
+    size_t sz;
+public:
+    File() {
+        sz = 0;
+        name = "";
+        created = Time("00:00");
+        modified = Time("00:00");
+        type = ".dat";
+    }
+    File (Time created, Time modified, size_t sz, string name, string type) {
+        this.created = created;
+        this.modified = modified;
+        this.name = name;
+        this.sz = sz;
+        this.type = type;
+    }
+    File (Time created, Time modified, size_t sz, string name) {
+        if (name.find(".") == -1) {
+            // throw wxceptionss
+        }
+        this.created = created;
+        this.modified = modified;
+        this.name = name.substr(0, name.find("."));
+        this.sz = sz;
+        this.type = name.substr(name.rfind("."), name.size() - 1);
+    }
+    ~File () {}
 };
+
+// todo: 16 possibilities for search but it is too much code by using class Filter
 
 int main() {
     return 0;
