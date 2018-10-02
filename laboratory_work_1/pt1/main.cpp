@@ -3,11 +3,9 @@ using namespace std;
 
 // todo:
 // 1) group the code into h files
-// 2) use templates
+// 2*) use template
 // 3) exception handling
 // 4) testing (unit tests?)
-
-// BUG! NEED TO PASS 2 ARGUMENTS: T AND INT
 template <typename T>
 struct Node{
     Node<T>* next;
@@ -157,106 +155,9 @@ private:
     int queueSize;
     int heapSize;
 };
-
-
-
 /*
-void driverFunction() {
-    cout << "Please select what type of a priority queue you want to use.\n";
-    cout << "1 - naive, 2 - effective\n";
+void testFunction() {
 
-    bool gotAnswer = 0;
-    char ans;
-    PriorityQueue* PQ;
-    while (!gotAnswer) {
-        cin >> ans;
-        switch(ans) {
-        case '1':
-            PQ = new PriorityQueueList();
-            gotAnswer = 1;
-            break;
-        case '2':
-            PQ = new PriorityQueueHeap();
-            gotAnswer = 1;
-            break;
-        default:
-            cout << "Please choose the correct answer or exit the program\n";
-        }
-    }
-
-    cout << "Great! Now you are able to test the appropriate class against your data\n"
-         << "There are 4 methods available on the Priority Queue data structure. Insert \n" <<
-         << "an element, pop an element with highest priority, see what the element with the\n" <<
-         << "highest priority is, and check whether the Queue is empty. Type " << "[push, " <<
-         << "pop, peek, empty] to call these methods. If you want to exit, type exit\n\n";
-    cout << "But first of all, choose the type (int, double, string, vector)";
-
-    string type;
-    bool isVector = 0;
-    while (1) {
-        cin >> type;
-        if (type == "int") {
-            using type = int;
-            break;
-        }
-        if (type == "double") {
-            using type = double;
-            break;
-        }
-        if (type == "string") {
-            using type = string;
-            break;
-        }
-        if (type == "vector") {
-            cout << "Vector contains what? Int or double?\n";
-            string contains;
-            cin >> contains;
-            if (contains == "int") {
-                using type = vector<int>;
-            } else if (contains == "double") {
-                using type = vector<double>;
-            }
-            break;
-        } else {
-            cout << "Try again\n";
-        }
-    }
-
-    if (isVector) {
-        while (1) {
-            string command;
-            cin >> command;
-            if (command == "exit") {
-                break;
-            }
-            // ...
-        }
-    }
-
-    while (1 && !isVector) {
-        string command;
-        cin >> command;
-        if (command == "exit") {
-            break;
-        }
-        if (command == "push") {
-            type item;
-            cin >> item;
-            int priority;
-            cin >> priority;
-            PQ.pushElem(item,priority);
-        }
-        // ans so on
-    }
-    cout << "Do you want to run the test again? y/n";
-    string command;
-    cin >> command;
-    if (command == "y") {
-        driverFunction();
-    } else if (command == "n") {
-        "Goodbye\n";
-    }
-    cout << "Good luck\n";
 }
 */
 

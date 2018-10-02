@@ -1,0 +1,27 @@
+# depslib dependency file v1.0
+1538519217 source:d:\programs2\test\pt2\time.cpp
+	"Time.h"
+
+1538520511 d:\programs2\test\pt2\time.h
+	<bits/stdc++.h>
+
+1538519246 source:d:\programs2\test\pt2\main.cpp
+	"FileSystem.h"
+	"PriorityQueueHeap.h"
+	"PriorityQueueList.h"
+
+1538519576 d:\programs2\test\pt2\filesystem.h
+	"File.h"
+
+1538518568 d:\programs2\test\pt2\priorityqueueheap.h
+	"PriorityQueue.h"
+
+1538518448 d:\programs2\test\pt2\priorityqueue.h
+	<bits/stdc++.h>
+
+1538518502 d:\programs2\test\pt2\priorityqueuelist.h
+	"PriorityQueue.h"
+
+1538519576 d:\programs2\test\pt2\file.h
+	"Time.h"
+
