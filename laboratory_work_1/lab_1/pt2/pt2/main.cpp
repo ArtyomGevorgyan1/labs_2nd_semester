@@ -80,8 +80,8 @@ public:
 
 class File {
 public:
-    Time created;
-    Time modified;
+    Time* created;
+    Time* modified;
     string name;
     string type;
     size_t sz;
@@ -89,8 +89,8 @@ public:
     File() {
         sz = 0;
         name = "";
-        created = Time("00:00");
-        modified = Time("00:00");
+        created = new Time("00:00");
+        modified = new Time("00:00");
         type = ".dat";
     }
     File (Time created, Time modified, size_t sz, string name, string type) {
@@ -179,8 +179,3 @@ public:
     };
 };
 
-
-
-int main() {
-    return 0;
-}
