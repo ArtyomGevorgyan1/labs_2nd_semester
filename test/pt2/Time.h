@@ -48,6 +48,20 @@ public:
         this->month = month;
         this->year = year;
     }
+    /*
+    int getDay() {
+        return this->day;
+    }
+    int getMonth() {
+        return this->month;
+    }
+    int getYear() {
+        return this->year;
+    }
+    pair<int, int> getTime() {
+        return this->time;
+    }
+    */
     bool operator == (Time compareTo) {
         return (compareTo.day == this->day &&
                 compareTo.month == this->month &&
@@ -55,5 +69,18 @@ public:
                 compareTo.time.first == this->time.first&&
                 compareTo.time.second == this->time.second);
     }
+    friend ostream& operator<<(ostream& os, const Time &t)
+    {
+        os << "[";
+        os << t.day << '.';
+        os << t.month << '.';
+        os << t.year << ". ";
+        os << '(' << t.time.first << ':';
+        os << t.time.second << ')' << ' ';
+        os << "] ";
+        return os;
+    }
     ~Time() {}
 };
+
+
