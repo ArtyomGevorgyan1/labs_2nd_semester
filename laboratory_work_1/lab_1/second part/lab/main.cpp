@@ -67,11 +67,58 @@ class File {
     Time modified;
     static File defaultFile;
 public:
-    File() {
-
+    File() {}
+    File(int sz, string name, string type, Time created, Time modified) {
+        // define < for Time and throw exceptions when Time created > Time modified, later
+        this->sz = sz;
+        this->name = name;
+        this->type = type;
+        this->created = created;
+        this->modified = modified;
+    }
+    size_t getSize() {
+        return sz;
+    }
+    string getName() {
+        return name;
+    }
+    string getType() {
+        return type;
+    }
+    Time getCreatedDate() {
+        return created;
+    }
+    Time getModifiedDate() {
+        return modified;
     }
     ~File() {}
 };
+
+class FileSystem {
+    vector <File*> files;
+public:
+    void addItem(File* file) {
+        files.push_back(file);
+    }
+    void removeItem(File* file) {
+        files.erase(std::remove(files.begin(), files.end(), file), files.end());
+    }
+    vector <File*> searchFiles(bool (*parameters)(File*)) {
+        vector <File*> answer;
+        for (size_t i = 0; i < files.size(); i++) {
+            if (parameters(files[i])) {
+                answer.push_back(files[i]);
+            }
+        }
+        return answer;
+    }
+};
+
+bool parameters(File* file) {
+    if (file-> getSize() > 10) {
+        return 1;
+    }
+}
 
 int main() {
     File f;
