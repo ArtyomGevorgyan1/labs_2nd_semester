@@ -11,7 +11,7 @@ using namespace std;
 template <typename T>
 struct Node{
     Node<T>* next;
-    T data;
+    pair<T,int> data;
 };
 
 template <typename T>
@@ -19,7 +19,7 @@ class PriorityQueue {
 public:
     virtual T pullMaxKey() = 0;
     virtual T peekMaxKey() const = 0;
-    virtual void pushElem(T) = 0;
+    virtual void pushElem(T, int) = 0;
     virtual bool isEmpty() const = 0;
     virtual ~PriorityQueue() {};
 };
@@ -45,7 +45,7 @@ public:
         Node<T>* cur = head;
         int index = 0;
         while (1) {
-            if (cur -> next -> data > res -> data) {
+            if (cur -> next -> data.second > res -> data.second) {
                 res = cur;
             }
             if (cur -> next) {
@@ -55,7 +55,7 @@ public:
                 break;
             }
         }
-        T result = (res -> data);
+        T result = (res -> data.first);
         deleteNdElem(index);
         return result;
     }
@@ -63,7 +63,7 @@ public:
         Node<T>* res = head;
         Node<T>* cur = head;
         while (1) {
-            if (cur -> next -> data > res -> data) {
+            if (cur -> next -> data.second > res -> data.second) {
                 res = cur;
             }
             if (cur -> next) {
@@ -72,11 +72,13 @@ public:
                 break;
             }
         }
-        T result = (res -> data);
+        T result = (res -> data.first);
         return result;
     }
-    void pushElem(T data) {
-        Node<T>* tmp = new Node<T>(/*parameters to initialize it*/);
+    void pushElem(T first, int second) {
+        Node<T>* tmp = new Node<T>;
+        tmp -> data.first = first;
+        tmp -> data.second = second;
         tmp -> next = head;
         head = tmp;
         queueSize++;
@@ -156,6 +158,9 @@ private:
     int heapSize;
 };
 
+
+
+/*
 void driverFunction() {
     cout << "Please select what type of a priority queue you want to use.\n";
     cout << "1 - naive, 2 - effective\n";
@@ -253,11 +258,11 @@ void driverFunction() {
     }
     cout << "Good luck\n";
 }
+*/
 
 int main() {
-
     PriorityQueueList<int> Heap;
     int d = 3;
-    Heap.pushElem(d);
+    Heap.pushElem(d, d);
     return 0;
 }
