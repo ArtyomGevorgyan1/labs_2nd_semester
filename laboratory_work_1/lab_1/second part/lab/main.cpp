@@ -25,7 +25,6 @@ class Time {
         }
     }
 public:
-    Time() {}
     Time(pair<int, int> time = defaultTime.time, int day = defaultTime.day, int month = defaultTime.month,
             int year = defaultTime.year) {
         this->time.first = time.first;
@@ -47,6 +46,13 @@ public:
         this->month = month;
         this->year = year;
     }
+    bool operator == (Time compareTo) {
+        return (compareTo.day == this->day &&
+                compareTo.month == this->month &&
+                compareTo.year == this->year &&
+                compareTo.time.first == this->time.first&&
+                compareTo.time.second == this->time.second);
+    }
     ~Time() {}
 };
 
@@ -59,12 +65,15 @@ class File {
     string type;
     Time created;
     Time modified;
+    static File defaultFile;
 public:
     File() {
 
     }
+    ~File() {}
 };
 
 int main() {
+    File f;
     return 0;
 }
