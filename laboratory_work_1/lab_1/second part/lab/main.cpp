@@ -5,11 +5,8 @@ class Time {
     int day;
     int month;
     int year;
-    static const int defaultDay = 0;
-    static const int defaultMonth = 0;
-    static const int defaultYear = 0;
     pair <int, int> time = make_pair(0, 0);
-    const static pair <int, int> defaultTime;
+    static Time defaultTime;
     bool validateSring(string test) {
         if (test.find(":") != std::string::npos) {
             size_t pos = test.find(":");
@@ -29,23 +26,43 @@ class Time {
     }
 public:
     Time() {}
-    Time(pair<int, int> time, int day, int month, int year) {
+    Time(pair<int, int> time = defaultTime.time, int day = defaultTime.day, int month = defaultTime.month,
+            int year = defaultTime.year) {
         this->time.first = time.first;
         this->time.second = time.second;
         this->day = day;
         this->month = month;
         this->year = year;
     }
-    Time(string time, int day = defaultDay, int month = defaultMonth, int year = defaultYear) {
+    Time(string time, int day = defaultTime.day, int month = defaultTime.month, int year = defaultTime.year) {
         if (!validateSring(time)) {
             cerr << "Bad data\n";
         }
         int pos = time.find(":");
         int first = stoi(time.substr(0, pos));
         int second = stoi(time.substr(pos + 1, std::string::npos));
-        cout << first << ' ' << second;
+        this->time.first = first;
+        this->time.second = second;
+        this->day = day;
+        this->month = month;
+        this->year = year;
     }
     ~Time() {}
+};
+
+// default time static object
+Time Time::defaultTime{make_pair(0, 0), 0, 0, 0};
+
+class File {
+    size_t sz;
+    string name;
+    string type;
+    Time created;
+    Time modified;
+public:
+    File() {
+
+    }
 };
 
 int main() {
