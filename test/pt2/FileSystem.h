@@ -3,6 +3,18 @@
 #include "File.h"
 
 
+ostream& operator<<(ostream& os, const vector<File*>& v)
+    {
+        os << "[";
+        for (size_t i = 0; i < v.size(); ++i) {
+            os << v[i];
+            if (i != v.size() - 1)
+                os << ", ";
+        }
+        os << "]\n";
+        return os;
+}
+
 class FileSystem {
     vector <File*> files;
 public:
@@ -28,17 +40,13 @@ public:
             files.push_back(file);
         }
     }
+    friend ostream& operator<<(ostream& os, FileSystem FS) //const vector<File*>& v)
+    {
+        os << "FileSystem object: \n";
+        os << FS.files;
+        return os;
+    }
 };
 
-ostream& operator<<(ostream& os, const vector<File*>& v)
-{
-    os << "[";
-    for (size_t i = 0; i < v.size(); ++i) {
-        os << v[i];
-        if (i != v.size() - 1)
-            os << ", ";
-    }
-    os << "]\n";
-    return os;
-}
+
 

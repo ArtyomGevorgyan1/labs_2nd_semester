@@ -39,9 +39,17 @@ bool parameters(File* file) {
 
 int main() {
     /*
-    vector <pair<int, int>> vec = {make_pair(1, 1)};
-    testingFunction<int>(vec);
+    Time F;
+    vector <pair<Time, int>> vec = {make_pair(F, 1)};
+    testingFunction<Time>(vec);
     */
+
+    /*
+    FileSystem FS;
+    FS.fillRandom();
+    cout << FS;
+    */
+
     /*
     PriorityQueue<int> *P = new PriorityQueueList<int>();
     pair<int,int> elem = {3, 3};
