@@ -30,7 +30,7 @@ public:
         Node<T>* cur = head;
         int index = 0;
         while (1) {
-            if (cur -> next -> data.second > res -> data.second) {
+            if (cur ->next && cur -> next -> data.second > res -> data.second) {
                 res = cur;
             }
             if (cur -> next) {
@@ -48,7 +48,7 @@ public:
         Node<T>* res = head;
         Node<T>* cur = head;
         while (1) {
-            if (cur -> next -> data.second > res -> data.second) {
+            if (cur -> next && cur -> next -> data.second > res -> data.second) {
                 res = cur;
             }
             if (cur -> next) {
@@ -73,13 +73,31 @@ public:
     }
 private:
     void deleteNdElem(int index) {
+        /*
         Node<T>* cur = head;
-        for (int i = 0; i < index - 1; i++) {
+        for (int i = 0; i < index - 1 && cur -> next; i++) {
             cur = cur -> next;
         }
         Node<T>* tmp = cur -> next;
+        if (tmp == nullptr) {
+            delete cur;
+            return;
+        }
         cur -> next = cur -> next -> next;
         delete tmp;
+        */
+        Node<T>* tmp = head;
+        if (index == 0) {
+            head = head -> next;
+            delete tmp;
+            return;
+        }
+        for (int i = 0; tmp != nullptr && i < index - 1; i++) {
+            tmp = tmp -> next;
+        }
+        Node<T>* next = tmp -> next -> next;
+        delete tmp -> next;
+        tmp -> next = next;
     }
     Node<T>* head;
     int queueSize;

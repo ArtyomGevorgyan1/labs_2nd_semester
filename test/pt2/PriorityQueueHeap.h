@@ -25,6 +25,9 @@ public:
     }
     void pushElem(pair<T,int> d) {
         heapSize++;
+        if (heapSpace == nullptr) {
+            heapSpace = new pair<T, int>;
+        }
         heapSpace[heapSize - 1] = d;
         siftUp(heapSize - 1);
     }
