@@ -48,20 +48,6 @@ public:
         this->month = month;
         this->year = year;
     }
-    /*
-    int getDay() {
-        return this->day;
-    }
-    int getMonth() {
-        return this->month;
-    }
-    int getYear() {
-        return this->year;
-    }
-    pair<int, int> getTime() {
-        return this->time;
-    }
-    */
     bool operator == (Time compareTo) {
         return (compareTo.day == this->day &&
                 compareTo.month == this->month &&
@@ -79,6 +65,13 @@ public:
         os << t.time.second << ')' << ' ';
         os << "] ";
         return os;
+    }
+    void fillRandom() {
+        this->day = rand() % 28;
+        this->month = rand() % 12 + 1;
+        this->year = 1900 + rand()%200;
+        this->time.first = rand() % 60;
+        this->time.second = rand() % 60;
     }
     ~Time() {}
 };

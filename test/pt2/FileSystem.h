@@ -21,12 +21,19 @@ public:
         }
         return answer;
     }
+    void fillRandom() {
+        for (int i = 0; i < rand() % 100; i++) {
+            File* file = new File();
+            file->fillRandom();
+            files.push_back(file);
+        }
+    }
 };
 
 ostream& operator<<(ostream& os, const vector<File*>& v)
 {
     os << "[";
-    for (int i = 0; i < v.size(); ++i) {
+    for (size_t i = 0; i < v.size(); ++i) {
         os << v[i];
         if (i != v.size() - 1)
             os << ", ";

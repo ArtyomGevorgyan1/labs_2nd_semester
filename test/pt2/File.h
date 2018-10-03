@@ -38,6 +38,24 @@ public:
     Time getModifiedDate() const {
         return modified;
     }
+    void fillRandom() {
+        sz = rand()%1000 * 8;
+        created.fillRandom();
+        modified.fillRandom();
+        string name1 = "", type1 = "", from1 = "";
+        for (int i = 0; i < rand() % 10; i++) {
+            name1 += (char) (rand() % 26 + 97);
+        }
+        for (int i = 0; i < rand() % 10; i++) {
+            type1 += (char) (rand() % 26 + 97);
+        }
+        for (int i = 0; i < rand() % 10; i++) {
+            from1 += (char) (rand() % 26 + 97);
+        }
+        name = name1;
+        type = type1;
+        from = from1;
+    }
     ~File() {}
 };
 

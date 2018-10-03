@@ -15,16 +15,16 @@ void testingFunction(vector<pair<T, int>> test, int mode = 0) {
     }
     for (int i = 0; i < 2*test.size(); i++) {
         if (i > test.size()) {
-            T highest = PQueue.peekMaxKey();
-            T popped = PQueue.pullMaxKey();
+            T highest = PQueue->peekMaxKey();
+            T popped = PQueue->pullMaxKey();
             if (highest == popped) {
                 cout << "The highest and the popped elements match\n";
             }
         } else {
-            if (PQueue.isEmpty()) {
+            if (PQueue->isEmpty()) {
                 cout << "Is empty\n";
             }
-            PQueue.pushElem(test[i]);
+            PQueue->pushElem(test[i]);
         }
     }
 }
@@ -37,6 +37,10 @@ bool parameters(File* file) {
 }
 
 int main() {
-    File f;
+    vector <pair<int, int>> vec = {make_pair(1, 1)};
+    testingFunction<int>(vec);
+
+
+
     return 0;
 }

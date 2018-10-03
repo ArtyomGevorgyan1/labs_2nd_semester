@@ -60,10 +60,10 @@ public:
         T result = (res -> data.first);
         return result;
     }
-    void pushElem(T first, int second) {
+    void pushElem(pair<T,int> data) {
         Node<T>* tmp = new Node<T>;
-        tmp -> data.first = first;
-        tmp -> data.second = second;
+        tmp -> data.first = data.first;
+        tmp -> data.second = data.second;
         tmp -> next = head;
         head = tmp;
         queueSize++;

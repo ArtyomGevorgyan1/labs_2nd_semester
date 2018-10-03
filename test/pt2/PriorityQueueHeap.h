@@ -13,17 +13,17 @@ public:
         delete[] heapSpace;
     }
     T pullMaxKey() {
-        T res = heapSpace[0];
+        pair<T,int> res = heapSpace[0];
         heapSpace[0] = heapSpace[heapSize - 1];
         heapSize--;
         siftDown(0);
-        return res;
+        return res.first;
     }
     T peekMaxKey() const {
-        T res = heapSpace[0];
-        return res;
+        pair<T,int> res = heapSpace[0];
+        return res.first;
     }
-    void pushElem(T d) {
+    void pushElem(pair<T,int> d) {
         heapSize++;
         heapSpace[heapSize - 1] = d;
         siftUp(heapSize - 1);
@@ -34,7 +34,7 @@ public:
 
 private:
     void siftUp (int i) {
-        while (heapSpace[i].priority < heapSpace[(i - 1) / 2].priority) {
+        while (heapSpace[i].second < heapSpace[(i - 1) / 2].second) {
             swap(heapSpace[(i - 1) / 2], heapSpace[i]);
             i = (i - 1) / 2;
         }
@@ -44,17 +44,17 @@ private:
             int left = 2 * i + 1;
             int right = 2 * i + 2;
             int j = left;
-            if (right < heapSize && heapSpace[right].priority > heapSpace[left].priority) {
+            if (right < heapSize && heapSpace[right].second > heapSpace[left].second) {
                 j = right;
             }
-            if (heapSpace[i].priority >= heapSpace[j].priority) {
+            if (heapSpace[i].second >= heapSpace[j].second) {
                 break;
             }
             swap(heapSpace[i], heapSpace[j]);
             i = j;
         }
     }
-    T* heapSpace;
+    pair<T,int>* heapSpace;
     int queueSize;
     int heapSize;
 };
