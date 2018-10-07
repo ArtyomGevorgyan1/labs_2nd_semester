@@ -60,18 +60,20 @@ public:
         os << "[";
         os << t.day << '.';
         os << t.month << '.';
-        os << t.year << ". ";
+        os << t.year << "; ";
         os << '(' << t.time.first << ':';
-        os << t.time.second << ')' << ' ';
-        os << "] ";
+        os << t.time.second << ')';
+        os << "]";
         return os;
     }
     void fillRandom() {
         this->day = rand() % 28;
         this->month = rand() % 12 + 1;
         this->year = 1900 + rand()%200;
-        this->time.first = rand() % 60;
-        this->time.second = rand() % 60;
+        int first = rand() % 24;
+        int second = rand() % 60;
+        this->time.first = first;
+        this->time.second = second;
     }
     ~Time() {}
 };

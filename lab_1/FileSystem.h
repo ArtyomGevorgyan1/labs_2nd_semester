@@ -1,13 +1,11 @@
 #pragma once
+#include "Folder.h"
 
-#include "File.h"
-
-
-ostream& operator<<(ostream& os, const vector<File*>& v)
+ostream& operator<<(ostream& os, const vector<Folder*>& v)
     {
-        os << "[";
+        os <<"[" << endl;
         for (size_t i = 0; i < v.size(); ++i) {
-            os << v[i];
+            os << '\t' << v[i];
             if (i != v.size() - 1)
                 os << ", ";
         }
@@ -16,37 +14,35 @@ ostream& operator<<(ostream& os, const vector<File*>& v)
 }
 
 class FileSystem {
-    vector <File*> files;
+    vector <Folder*> folders;
 public:
-    void addItem(File* file) {
-        files.push_back(file);
+    void addItem(Folder* folder) {
+        folders.push_back(folder);
     }
-    void removeItem(File* file) {
-        files.erase(std::remove(files.begin(), files.end(), file), files.end());
+    void removeItem(Folder* folder) {
+        folders.erase(std::remove(folders.begin(), folders.end(), folder), folders.end());
     }
-    vector <File*> searchFiles(bool (*parameters)(File*)) {
-        vector <File*> answer;
-        for (size_t i = 0; i < files.size(); i++) {
-            if (parameters(files[i])) {
-                answer.push_back(files[i]);
+    vector <Folder*> searchFiles(bool (*parameters)(Folder*)) {
+        vector <Folder*> answer;
+        for (size_t i = 0; i < folders.size(); i++) {
+            if (parameters(folders[i])) {
+                answer.push_back(folders[i]);
             }
         }
         return answer;
     }
     void fillRandom() {
         for (int i = 0; i < rand() % 100; i++) {
-            File* file = new File();
-            file->fillRandom();
-            files.push_back(file);
+            Folder* folder = new Folder();
+            folder->fillRandom();
+            folders.push_back(folder);
         }
     }
     friend ostream& operator<<(ostream& os, FileSystem FS) //const vector<File*>& v)
     {
         os << "FileSystem object: \n";
-        os << FS.files;
+        os << FS.folders;
         return os;
     }
 };
-
-
 

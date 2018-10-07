@@ -13,14 +13,14 @@ void testingFunction(vector<pair<T, int>> test, int mode = 1) {
     } else {
         PQueue = new PriorityQueueList<T>();
     }
-    for (int i = 0; i < test.size(); i++) {
+    for (unsigned int i = 0; i < test.size(); i++) {
         if (PQueue->isEmpty()) {
             cout << "Is empty\n";
         }
         PQueue->pushElem(test[i]);
         cout << "ff\n";
     }
-    for (int i = 0; i < test.size(); i++) {
+    for (unsigned int i = 0; i < test.size(); i++) {
         T highest = PQueue->peekMaxKey();
         T popped = PQueue->pullMaxKey();
         if (highest == popped) {
@@ -44,11 +44,11 @@ int main() {
     testingFunction<Time>(vec);
     */
 
-    /*
+
     FileSystem FS;
     FS.fillRandom();
     cout << FS;
-    */
+
 
     /*
     PriorityQueue<int> *P = new PriorityQueueList<int>();

@@ -59,13 +59,36 @@ public:
     ~File() {}
 };
 
+ostream& operator<<(ostream& os, File v)
+{
+    os << '\t'<< "File name: ";
+    os << '\t'<< v.getName() << '\n';
+    os << '\t'<< "File type: ";
+    os << '\t' << v.getType() << '\n';
+    os << '\t'<<"File size: ";
+    os << '\t'<< v.getSize() << '\n';
+    os << '\t'<<"Folder: ";
+    os <<'\t'<< v.getParentFolder() << '\n';
+    os <<'\t'<< "Created: ";
+    os <<'\t'<< v.getCreatedDate() << '\n';
+    os <<'\t'<< "Modified: ";
+    os <<'\t'<<v.getModifiedDate() << '\n';
+    return os;
+}
+
 ostream& operator<<(ostream& os, const File* v)
 {
-    os << v->getName() << ' ';
-    os << v->getType() << ' ';
-    os << v->getSize() << ' ';
-    os << v->getParentFolder() << ' ';
-    os << v->getCreatedDate() << ' ';
-    os << v->getModifiedDate() << ' ';
+    os <<'\t'<< "File name: ";
+    os <<'\t'<< v->getName() << '\n';
+    os <<'\t'<< "File type: ";
+    os <<'\t'<< v->getType() << '\n';
+    os <<'\t'<< "File size: ";
+    os <<'\t'<< v->getSize() << '\n';
+    os << '\t'<<"Folder: ";
+    os <<'\t'<< v->getParentFolder() << '\n';
+    os <<'\t'<< "Created: ";
+    os <<'\t'<< v->getCreatedDate() << '\n';
+    os <<'\t'<< "Modified: ";
+    os <<'\t'<< v->getModifiedDate() << '\n';
     return os;
 }
