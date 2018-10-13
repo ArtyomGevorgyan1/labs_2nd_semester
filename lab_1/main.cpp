@@ -1,72 +1,9 @@
-#include "FileSystem.h"
-#include "PriorityQueueHeap.h"
-#include "PriorityQueueList.h"
 #include <iostream>
-#include <stdlib.h>
-#include <time.h>
 
-template <typename T>
-void testingFunction(vector<pair<T, int>> test, int mode = 1) {
-    PriorityQueue<T>* PQueue;
-    if (mode) {
-        PQueue = new PriorityQueueHeap<T>();
-    } else {
-        PQueue = new PriorityQueueList<T>();
-    }
-    for (unsigned int i = 0; i < test.size(); i++) {
-        if (PQueue->isEmpty()) {
-            cout << "Is empty\n";
-        }
-        PQueue->pushElem(test[i]);
-        cout << "ff\n";
-    }
-    for (unsigned int i = 0; i < test.size(); i++) {
-        T highest = PQueue->peekMaxKey();
-        T popped = PQueue->pullMaxKey();
-        if (highest == popped) {
-            cout << "The highest and the popped elements match\n";
-        }
-    }
+using namespace std;
 
-}
-
-// function to serve as a filter for the operation of searching for files in FileSystem
-bool parameters(File* file) {
-    if (file-> getSize() > 10) {
-        return 1;
-    }
-}
-
-int main() {
-    /*
-    Time F;
-    vector <pair<Time, int>> vec = {make_pair(F, 1)};
-    testingFunction<Time>(vec);
-    */
-
-
-    FileSystem FS;
-    FS.fillRandom();
-    cout << FS;
-
-
-    /*
-    PriorityQueue<int> *P = new PriorityQueueList<int>();
-    pair<int,int> elem = {3, 3};
-    P->pushElem(elem);
-    if (P->isEmpty()) {
-        cout << "empty\n";
-    } else {
-        cout<<"np]\n";
-    }
-    int m = P->peekMaxKey();
-    cout << m;
-    P->pullMaxKey();
-    if (P->isEmpty()) {
-        cout << "empty\n";
-    } else {
-        cout<<"np]\n";
-    }
-    */
+int main()
+{
+    cout << "Hello world!" << endl;
     return 0;
 }
